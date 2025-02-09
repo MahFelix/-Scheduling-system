@@ -1,5 +1,5 @@
 package com.nutricionista.agendamento.model;
-
+//MODEL DE AGENDAMENTO
 import jakarta.persistence.*;
 
 @Entity
