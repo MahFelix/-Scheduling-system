@@ -21,5 +21,5 @@ COPY --from=build /app/target/*.jar app.jar
 # Expõe a porta 8080
 EXPOSE 8080
 
-# Comando para rodar a aplicação
+# Comando para rodar a aplicaçã
 CMD ["java", "-jar", "app.jar"]
