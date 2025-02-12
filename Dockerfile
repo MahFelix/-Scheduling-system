@@ -3,10 +3,14 @@ FROM ubuntu:latest AS build
 # Atualiza o repositório e instala o OpenJDK e outras dependências necessárias
 RUN apt-get update && apt-get install -y openjdk-17-jdk curl wget gnupg2
 
+
+
 # Adiciona o repositório do Maven
 RUN curl -fsSL https://apache.osuosl.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz -o /tmp/maven.tar.gz \
     && tar -xvzf /tmp/maven.tar.gz -C /opt \
     && rm /tmp/maven.tar.gz
+
+RUN apt-get update && apt-get install -y maven
 
 
 # Configura o Maven
