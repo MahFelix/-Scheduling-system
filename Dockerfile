@@ -14,8 +14,7 @@ ENV PATH $MAVEN_HOME/bin:$PATH
 COPY . .
 
 # Limpeza e construção do projeto
-RUN mvn clean install
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean install -DskipTests
 
 FROM openjdk:17-jdk-slim
 
