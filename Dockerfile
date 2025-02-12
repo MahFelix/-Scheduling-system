@@ -4,9 +4,10 @@ FROM ubuntu:latest AS build
 RUN apt-get update && apt-get install -y openjdk-17-jdk curl wget gnupg2
 
 # Adiciona o repositório do Maven
-RUN curl -fsSL https://mirrors.estointernet.in/apache/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz -o /tmp/maven.tar.gz \
+RUN curl -fsSL https://apache.osuosl.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz -o /tmp/maven.tar.gz \
     && tar -xvzf /tmp/maven.tar.gz -C /opt \
     && rm /tmp/maven.tar.gz
+
 
 # Configura o Maven
 ENV MAVEN_HOME /opt/apache-maven-3.8.4
