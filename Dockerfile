@@ -1,25 +1,16 @@
-# Usa a imagem oficial do Java 17
-FROM eclipse-temurin:17-jdk AS build
+FROM ubuntu:latest AS build
 
-# Define o diretório de trabalho
-WORKDIR /app
-
-# Copia os arquivos do projeto
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -v
 COPY . .
 
-# Compila o projeto com Maven
-RUN ./mvnw clean package -DskipTests
+RUN apt-get install maven
+RUN mvn clean install
 
-# Usa outra imagem para rodar apenas o JAR (reduz tamanho do container)
-FROM eclipse-temurin:17-jre
+FROM openjdk:17-jdk-slim
 
-WORKDIR /app
+EXPOSE 8090
 
-# Copia o JAR gerado para dentro do container final
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /target/agendamento-0.0.1-SNAPSHOT.jar app.jar
 
-# Expõe a porta 8080
-EXPOSE 8080
-
-# Comando para rodar a aplicaçã
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT [ "Java", "-jar", "app.jar"]
