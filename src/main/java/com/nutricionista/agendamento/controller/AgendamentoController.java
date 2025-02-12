@@ -1,4 +1,5 @@
 package com.nutricionista.agendamento.controller;
+
 import com.nutricionista.agendamento.model.Agendamento;
 import com.nutricionista.agendamento.repository.AgendamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,8 +58,9 @@ public class AgendamentoController {
             return new WebMvcConfigurer() {
                 @Override
                 public void addCorsMappings(CorsRegistry registry) {
+                    // Permitir acesso apenas do domínio sem o caminho, ou seja, www.seusite.com
                     registry.addMapping("/**")
-                            .allowedOrigins("https://login-interface-phi.vercel.app/Agendamentolist") // Ajuste a porta do frontend
+                            .allowedOrigins("https://login-interface-phi.vercel.app")
                             .allowedMethods("GET", "POST", "PUT", "DELETE")
                             .allowCredentials(true);
                 }
